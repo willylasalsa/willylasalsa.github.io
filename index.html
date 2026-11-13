@@ -3,42 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combos Sobre Ruedas - Menú y Pedidos</title>
+    <title>Combos Sobre Ruedas - Menú Interactivo</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos adicionales para los botones de productos y el carrito flotante */
+        .card {
+            cursor: pointer;
+        }
         .product-options {
-            margin-top: 1rem;
-            display: flex;
+            display: none;
+            margin-top: 1.2rem;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
+            border-top: 2px dashed #ffd100;
+            padding-top: 1rem;
+        }
+        .card.active .product-options {
+            display: flex;
         }
         .sub-item {
             background: #fff9ec;
             padding: 0.8rem;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 10px;
             border: 1px solid #ffd100;
         }
-        .sub-item span {
-            font-weight: 600;
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .product-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid #ff6b00;
+            background: #ffe0b2;
+            flex-shrink: 0;
+        }
+        .product-details span {
+            display: block;
+            font-weight: 700;
             color: #1a1a2e;
+            font-size: 0.95rem;
+        }
+        .product-details small {
+            color: #ff2e63;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
         .btn-add {
             background: #ff2e63;
             color: white;
             border: none;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 0.9rem;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
+            white-space: nowrap;
         }
         .btn-add:hover {
             background: #e0115f;
         }
+        .toggle-hint {
+            font-size: 0.85rem;
+            color: #ff6b00;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        
         /* Carrito Flotante */
         .cart-floating {
             position: fixed;
@@ -77,68 +115,119 @@
 </head>
 <body>
 
-    <!-- Cabecera -->
     <header>
-        <div class="header-badge">🍔 ¡Pide directo a WhatsApp! 🚐</div>
+        <div class="header-badge">🍔 ¡Toca una categoría para ver el menú! 🚐</div>
         <h1>Combos de Comida Callejera</h1>
-        <p>Selecciona tus productos favoritos, armar tu carrito y haz tu pedido al instante.</p>
+        <p>Explora nuestras opciones, arma tu pedido y envíalo directo al WhatsApp.</p>
     </header>
 
     <div class="container">
 
-        <div class="section-title">📦 Selecciona tus Productos</div>
+        <div class="section-title">📦 Nuestro Menú (Toca para desplegar)</div>
         <div class="grid-6">
             
-            <!-- Producto 1: Hamburguesas -->
-            <div class="card">
+            <!-- Categoría 1: Hamburguesas -->
+            <div class="card" onclick="toggleMenu(this)">
                 <div class="step-number">1</div>
                 <h3>Hamburguesas Artesanales</h3>
-                <p>Elige tu variedad favorita de hamburguesa jugosa con pan brioche.</p>
-                <div class="product-options">
+                <p>Carne 100% de res con pan brioche tostado.</p>
+                <span class="toggle-hint">▼ Toca para ver variedades y precios</span>
+                
+                <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
-                        <span>Clásica con Queso ($5.00)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Hamburguesa Clásica" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍔</text></svg>'">
+                            <div class="product-details">
+                                <span>Clásica con Queso</span>
+                                <small>$5.00</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Clásica', 5.00)">Agregar</button>
                     </div>
+
                     <div class="sub-item">
-                        <span>Doble Carne y Tocino ($7.50)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=200&q=80" alt="Doble Carne y Tocino" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🥓</text></svg>'">
+                            <div class="product-details">
+                                <span>Doble Carne y Tocino</span>
+                                <small>$7.50</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Doble con Tocino', 7.50)">Agregar</button>
                     </div>
+
                     <div class="sub-item">
-                        <span>Especial de la Casa ($9.00)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=200&q=80" alt="Especial de la Casa" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>👑</text></svg>'">
+                            <div class="product-details">
+                                <span>Especial de la Casa</span>
+                                <small>$9.00</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Especial de la Casa', 9.00)">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Producto 2: Papas Fritas -->
-            <div class="card">
+            <!-- Categoría 2: Papas Fritas -->
+            <div class="card" onclick="toggleMenu(this)">
                 <div class="step-number">2</div>
                 <h3>Papas Fritas y Complementos</h3>
-                <p>Acompaña tu comida con porciones doraditas y crujientes.</p>
-                <div class="product-options">
+                <p>Porciones doraditas, crujientes y deliciosas.</p>
+                <span class="toggle-hint">▼ Toca para ver variedades y precios</span>
+
+                <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
-                        <span>Papas Medianas ($2.50)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="Papas Medianas" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍟</text></svg>'">
+                            <div class="product-details">
+                                <span>Papas Medianas</span>
+                                <small>$2.50</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Papas Fritas Medianas', 2.50)">Agregar</button>
                     </div>
+
                     <div class="sub-item">
-                        <span>Papas con Cheddar y Tocino ($4.00)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=200&q=80" alt="Papas con Cheddar y Tocino" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🧀</text></svg>'">
+                            <div class="product-details">
+                                <span>Papas con Cheddar y Tocino</span>
+                                <small>$4.00</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Papas con Cheddar y Tocino', 4.00)">Agregar</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Producto 3: Bebidas -->
-            <div class="card">
+            <!-- Categoría 3: Bebidas -->
+            <div class="card" onclick="toggleMenu(this)">
                 <div class="step-number">3</div>
                 <h3>Bebidas Heladas</h3>
-                <p>Refrescos y jugos naturales bien fríos para calmar la sed.</p>
-                <div class="product-options">
+                <p>Refrescos y jugos naturales bien fríos.</p>
+                <span class="toggle-hint">▼ Toca para ver variedades y precios</span>
+
+                <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
-                        <span>Refresco de Lata ($1.50)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=200&q=80" alt="Refresco de Lata" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🥤</text></svg>'">
+                            <div class="product-details">
+                                <span>Refresco de Lata</span>
+                                <small>$1.50</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Refresco de Lata', 1.50)">Agregar</button>
                     </div>
+
                     <div class="sub-item">
-                        <span>Limonada Natural 1L ($2.50)</span>
+                        <div class="product-info">
+                            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=200&q=80" alt="Limonada Natural 1L" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍋</text></svg>'">
+                            <div class="product-details">
+                                <span>Limonada Natural 1L</span>
+                                <small>$2.50</small>
+                            </div>
+                        </div>
                         <button class="btn-add" onclick="agregarAlCarrito('Limonada Natural 1L', 2.50)">Agregar</button>
                     </div>
                 </div>
@@ -148,25 +237,27 @@
 
     </div>
 
-    <!-- Carrito Flotante que va a WhatsApp -->
     <div class="cart-floating">
         <span id="cart-count">🛒 Carrito: 0 productos</span>
         <span id="cart-total">Total: $0.00</span>
         <button class="cart-btn" onclick="enviarPedidoWhatsApp()">📲 Enviar a WhatsApp</button>
     </div>
 
-    <!-- Pie de página -->
     <footer>
-        <p>&copy; 2026 Combos Sobre Ruedas. Pedidos en línea sincronizados con WhatsApp.</p>
+        <p>&copy; 2026 Combos Sobre Ruedas. Menú interactivo con conexión a WhatsApp.</p>
     </footer>
 
-    <!-- Script de lógica del Carrito y WhatsApp -->
     <script>
+        function toggleMenu(cardElement) {
+            cardElement.classList.toggle('active');
+        }
+
         let carrito = [];
 
         function agregarAlCarrito(nombre, precio) {
             carrito.push({ nombre, precio });
             actualizarCarrito();
+            alert(`¡Agregado al carrito: ${nombre}!`);
         }
 
         function actualizarCarrito() {
@@ -180,11 +271,11 @@
 
         function enviarPedidoWhatsApp() {
             if (carrito.length === 0) {
-                alert("Tu carrito está vacío. Selecciona al menos un producto.");
+                alert("Tu carrito está vacío. Toca una categoría del menú para seleccionar productos.");
                 return;
             }
 
-            let mensaje = "¡Hola! Quisiera hacer el siguiente pedido:\n\n";
+            let mensaje = "¡Hola! Quisiera hacer el siguiente pedido desde la web:\n\n";
             let total = 0;
 
             carrito.forEach((item, index) => {
@@ -194,7 +285,7 @@
 
             mensaje += `\n*Total a pagar: $${total.toFixed(2)}*\n\n¡Quedo a la espera de la confirmación!`;
 
-            // CAMBIA AQUÍ TU NÚMERO DE WHATSAPP (ejemplo: 5351234567)
+            // REEMPLAZA ESTE NÚMERO POR TU NÚMERO REAL DE WHATSAPP (ej: 5351234567)
             let numeroWhatsApp = "5359126741"; 
 
             let url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
