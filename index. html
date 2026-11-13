@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Sitio Web</title>
+    <!-- Conectamos el archivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">MiMarca</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Principal (Hero) -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido a mi espacio en la web</h1>
+            <p>Un diseño limpio, rápido y alojado gratuitamente en GitHub Pages.</p>
+            <a href="#proyectos" class="btn">Ver mi trabajo</a>
+        </div>
+    </section>
+
+    <!-- Sección de Contenido / Tarjetas -->
+    <section id="proyectos" class="container">
+        <h2>Lo que hago</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Proyecto Uno</h3>
+                <p>Descripción breve de tu primer proyecto, servicio o tema principal que quieras destacar.</p>
+            </div>
+            <div class="card">
+                <h3>Proyecto Dos</h3>
+                <p>Descripción breve de tu segundo proyecto. Puedes añadir enlaces o imágenes aquí dentro.</p>
+            </div>
+            <div class="card">
+                <h3>Proyecto Tres</h3>
+                <p>Descripción breve de tu tercer proyecto. El diseño se adapta automáticamente a celulares.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página y Contacto -->
+    <footer id="contacto">
+        <p>¿Quieres ponerte en contacto? Escríbeme a: <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a></p>
+        <p class="copyright">&copy; 2026 MiMarca. Creado con HTML y CSS.</p>
+    </footer>
+
+</body>
+</html>
