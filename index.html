@@ -6,26 +6,21 @@
     <title>Combos Sobre Ruedas - Menú Interactivo</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Espacio extra abajo para que el carrito flotante no tape el último producto */
+        /* Espacio extra abajo para que el carrito flotante no tape los botones */
         body {
             padding-bottom: 130px;
+            background-color: #fff9ec;
         }
 
-        /* Estilos del Carrusel Automático de Fotos */
-        .carousel-container {
-            max-width: 1000px;
-            margin: 1.5rem auto 0 auto;
-            padding: 0 1.2rem;
-        }
-        .carousel-wrapper {
-            position: relative;
+        /* Carrusel en la parte superior absoluta */
+        .top-carousel {
             width: 100%;
-            height: 240px;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(26, 26, 46, 0.25);
-            border: 4px solid #ffd100;
+            height: 280px;
+            position: relative;
             background: #1a1a2e;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            border-bottom: 6px solid #ffd100;
         }
         .carousel-slide {
             position: absolute;
@@ -49,13 +44,13 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(26, 26, 46, 0.92));
+            background: linear-gradient(transparent, rgba(26, 26, 46, 0.95));
             color: #ffffff;
-            padding: 1.8rem 1rem 0.9rem 1rem;
+            padding: 1.5rem 1rem 0.8rem 1rem;
             font-weight: 800;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             text-align: center;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
         .carousel-dots {
             position: absolute;
@@ -75,6 +70,41 @@
         .dot.active {
             background: #ffd100;
             transform: scale(1.2);
+        }
+
+        /* Cabecera / Título principal ubicado debajo del carrusel */
+        header {
+            background: linear-gradient(135deg, #ff2e63 0%, #ff6b00 60%, #ff9a00 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-bottom: 6px solid #ffd100;
+            box-shadow: 0 6px 15px rgba(255, 46, 99, 0.3);
+        }
+        .header-badge {
+            background: #ffd100;
+            color: #1a1a2e;
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 0px rgba(26, 26, 46, 0.3);
+        }
+        header p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            max-width: 600px;
+            margin: auto;
+            color: #fff8e7;
         }
 
         /* Estilos del Menú Desplegable */
@@ -186,61 +216,54 @@
         }
 
         @media (min-width: 768px) {
-            .carousel-wrapper {
-                height: 360px;
+            .top-carousel {
+                height: 380px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabecera -->
+    <!-- 1. VISOR / CARRUSEL AUTOMÁTICO EN LA PARTE SUPERIOR ABSOLUTA -->
+    <div class="top-carousel" id="foodCarousel">
+        <!-- Foto 1: Tu producto estrella -->
+        <div class="carousel-slide active">
+            <img src="foto1.jpg" alt="Nuestras Hamburguesas Artesanales" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'">
+            <div class="carousel-caption">🍔 Hamburguesas 100% Artesanales preparadas al momento</div>
+        </div>
+        <!-- Foto 2: Clientes disfrutando -->
+        <div class="carousel-slide">
+            <img src="foto2.jpg" alt="Clientes disfrutando la comida" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80'">
+            <div class="carousel-caption">😋 ¡Momentos felices disfrutando nuestros deliciosos combos!</div>
+        </div>
+        <!-- Foto 3: Papas con cheddar -->
+        <div class="carousel-slide">
+            <img src="foto3.jpg" alt="Papas fritas crujientes" onerror="this.src='https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80'">
+            <div class="carousel-caption">🍟 Papas crujientes con queso cheddar y tocino</div>
+        </div>
+        <!-- Foto 4: Persona comiendo -->
+        <div class="carousel-slide">
+            <img src="foto4.jpg" alt="Persona comiendo combo" onerror="this.src='https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80'">
+            <div class="carousel-caption">🔥 ¡El verdadero sabor callejero que te encanta!</div>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <!-- 2. CABECERA Y TÍTULO DE LA PÁGINA -->
     <header>
-        <div class="header-badge">🍔 ¡Toca una categoría para ver el menú! 🚐</div>
+        <div class="header-badge">🚐 ¡Sabor Inigualable sobre Ruedas! 🍔</div>
         <h1>Combos de Comida Callejera</h1>
         <p>Explora nuestras opciones, arma tu pedido y envíalo directo al WhatsApp.</p>
     </header>
 
-    <!-- Carrusel Automático de Productos y Clientes Disfrutando -->
-    <div class="carousel-container">
-        <div class="carousel-wrapper" id="foodCarousel">
-            <!-- Foto 1: Hamburguesa Artesanal -->
-            <div class="carousel-slide active">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa Artesanal Jugosa">
-                <div class="carousel-caption">🍔 Hamburguesas 100% Artesanales recién salidas de la plancha</div>
-            </div>
-            <!-- Foto 2: Personas disfrutando comida -->
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Amigos disfrutando comida">
-                <div class="carousel-caption">😋 ¡El mejor sabor para compartir con amigos y familia!</div>
-            </div>
-            <!-- Foto 3: Papas Fritas con Cheddar -->
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80" alt="Papas Fritas con Cheddar y Tocino">
-                <div class="carousel-caption">🍟 Papas crujientes bañadas en queso cheddar y tocino</div>
-            </div>
-            <!-- Foto 4: Persona comiendo hamburguesa -->
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80" alt="Disfrutando un buen combo">
-                <div class="carousel-caption">🔥 Combos irresistibles que te hacen volver por más</div>
-            </div>
-            <!-- Foto 5: Bebidas refrescantes -->
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80" alt="Limonada Natural Helada">
-                <div class="carousel-caption">🍋 Limonadas naturales y bebidas bien frías</div>
-            </div>
-
-            <!-- Indicadores de puntos -->
-            <div class="carousel-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-        </div>
-    </div>
-
+    <!-- 3. MENÚ INTERACTIVO -->
     <div class="container">
 
         <div class="section-title">📦 Nuestro Menú (Toca para desplegar)</div>
@@ -256,7 +279,7 @@
                 <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Hamburguesa Clásica" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍔</text></svg>'">
+                            <img src="foto1.jpg" alt="Clásica" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Clásica con Queso</span>
                                 <small>$5.00</small>
@@ -267,7 +290,7 @@
 
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=200&q=80" alt="Doble Carne y Tocino" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🥓</text></svg>'">
+                            <img src="hamburguesa2.jpg" alt="Doble" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Doble Carne y Tocino</span>
                                 <small>$7.50</small>
@@ -278,7 +301,7 @@
 
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=200&q=80" alt="Especial de la Casa" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>👑</text></svg>'">
+                            <img src="hamburguesa3.jpg" alt="Especial" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Especial de la Casa</span>
                                 <small>$9.00</small>
@@ -299,7 +322,7 @@
                 <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="Papas Medianas" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍟</text></svg>'">
+                            <img src="papas1.jpg" alt="Papas" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Papas Medianas</span>
                                 <small>$2.50</small>
@@ -310,7 +333,7 @@
 
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=200&q=80" alt="Papas con Cheddar y Tocino" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🧀</text></svg>'">
+                            <img src="papas2.jpg" alt="Cheddar" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Papas con Cheddar y Tocino</span>
                                 <small>$4.00</small>
@@ -331,7 +354,7 @@
                 <div class="product-options" onclick="event.stopPropagation()">
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=200&q=80" alt="Refresco de Lata" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🥤</text></svg>'">
+                            <img src="bebida1.jpg" alt="Refresco" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Refresco de Lata</span>
                                 <small>$1.50</small>
@@ -342,7 +365,7 @@
 
                     <div class="sub-item">
                         <div class="product-info">
-                            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=200&q=80" alt="Limonada Natural 1L" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%22%23ffd100%22/><text x=%2250%%22 y=%2255%%22 font-size=%2230%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>🍋</text></svg>'">
+                            <img src="bebida2.jpg" alt="Limonada" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=200&q=80'">
                             <div class="product-details">
                                 <span>Limonada Natural 1L</span>
                                 <small>$2.50</small>
@@ -369,9 +392,9 @@
         <p>&copy; 2026 Combos Sobre Ruedas. Menú interactivo con conexión a WhatsApp.</p>
     </footer>
 
-    <!-- Scripts de Carrusel, Menú y Carrito -->
+    <!-- Scripts -->
     <script>
-        // Lógica del Carrusel Automático (cambia cada 3.5 segundos)
+        // Carrusel automático superior (cambia cada 3.5 segundos)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -388,12 +411,12 @@
 
         setInterval(nextSlide, 3500);
 
-        // Lógica del Menú Desplegable
+        // Menú desplegable
         function toggleMenu(cardElement) {
             cardElement.classList.toggle('active');
         }
 
-        // Lógica del Carrito y WhatsApp
+        // Carrito y WhatsApp
         let carrito = [];
 
         function agregarAlCarrito(nombre, precio) {
