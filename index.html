@@ -3,93 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combos Sobre Ruedas - ¡Sabor Inigualable!</title>
+    <title>Combos Sobre Ruedas - Menú y Pedidos</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos adicionales para los botones de productos y el carrito flotante */
+        .product-options {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .sub-item {
+            background: #fff9ec;
+            padding: 0.8rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ffd100;
+        }
+        .sub-item span {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .btn-add {
+            background: #ff2e63;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-add:hover {
+            background: #e0115f;
+        }
+        /* Carrito Flotante */
+        .cart-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a1a2e;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #ffd100;
+        }
+        .cart-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .cart-btn:hover {
+            background: #1ebe5d;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Cabecera -->
     <header>
-        <div class="header-badge">🍔 ¡Edición Especial sobre Ruedas! 🚐</div>
-        <h1>Combos de Comida espesiales</h1>
-        <p>¡Sabor irresistible, frescos y listos para disfrutar en minutos!</p>
+        <div class="header-badge">🍔 ¡Pide directo a WhatsApp! 🚐</div>
+        <h1>Combos de Comida Callejera</h1>
+        <p>Selecciona tus productos favoritos, armar tu carrito y haz tu pedido al instante.</p>
     </header>
 
     <div class="container">
 
-        <!-- Sección de Qué Incluye -->
-        <div class="section-title">📦 ¿Qué incluye nuestro Súper Combo?</div>
+        <div class="section-title">📦 Selecciona tus Productos</div>
         <div class="grid-6">
+            
+            <!-- Producto 1: Hamburguesas -->
             <div class="card">
                 <div class="step-number">1</div>
-                <h3>Hamburguesa Artesanal</h3>
-                <p>Carne 100% de res jugosa, queso fundido, tocino crujiente y pan brioche tostado al momento.</p>
+                <h3>Hamburguesas Artesanales</h3>
+                <p>Elige tu variedad favorita de hamburguesa jugosa con pan brioche.</p>
+                <div class="product-options">
+                    <div class="sub-item">
+                        <span>Clásica con Queso ($5.00)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Clásica', 5.00)">Agregar</button>
+                    </div>
+                    <div class="sub-item">
+                        <span>Doble Carne y Tocino ($7.50)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Doble con Tocino', 7.50)">Agregar</button>
+                    </div>
+                    <div class="sub-item">
+                        <span>Especial de la Casa ($9.00)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Hamburguesa Especial de la Casa', 9.00)">Agregar</button>
+                    </div>
+                </div>
             </div>
+
+            <!-- Producto 2: Papas Fritas -->
             <div class="card">
                 <div class="step-number">2</div>
-                <h3>Papas Fritas Crujientes</h3>
-                <p>Corte casero, doraditas por fuera, suaves por dentro y sazonadas con nuestra especia secreta.</p>
+                <h3>Papas Fritas y Complementos</h3>
+                <p>Acompaña tu comida con porciones doraditas y crujientes.</p>
+                <div class="product-options">
+                    <div class="sub-item">
+                        <span>Papas Medianas ($2.50)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Papas Fritas Medianas', 2.50)">Agregar</button>
+                    </div>
+                    <div class="sub-item">
+                        <span>Papas con Cheddar y Tocino ($4.00)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Papas con Cheddar y Tocino', 4.00)">Agregar</button>
+                    </div>
+                </div>
             </div>
+
+            <!-- Producto 3: Bebidas -->
             <div class="card">
                 <div class="step-number">3</div>
-                <h3>Bebida Helada</h3>
-                <p>Refresco bien frío o refrescante limonada natural de la casa para acompañar.</p>
+                <h3>Bebidas Heladas</h3>
+                <p>Refrescos y jugos naturales bien fríos para calmar la sed.</p>
+                <div class="product-options">
+                    <div class="sub-item">
+                        <span>Refresco de Lata ($1.50)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Refresco de Lata', 1.50)">Agregar</button>
+                    </div>
+                    <div class="sub-item">
+                        <span>Limonada Natural 1L ($2.50)</span>
+                        <button class="btn-add" onclick="agregarAlCarrito('Limonada Natural 1L', 2.50)">Agregar</button>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Sección de Pasos -->
-        <div class="section-title">🚀 Paso a Paso para tu Pedido</div>
-        <div class="grid-6">
-            <div class="card">
-                <div class="step-number">1</div>
-                <h3>Elige tu Combo</h3>
-                <p>Selecciona tu platillo principal favorito en nuestra combi móvil.</p>
-            </div>
-            <div class="card">
-                <div class="step-number">2</div>
-                <h3>Personaliza tus Salsas</h3>
-                <p>Añade aderezos al gusto: BBQ, picante artesanal, ajo o queso cheddar extra.</p>
-            </div>
-            <div class="card">
-                <div class="step-number">3</div>
-                <h3>¡Disfruta al Instante!</h3>
-                <p>Recibe tu comida caliente, recién preparada y lista para comer donde estés.</p>
-            </div>
-        </div>
-
-        <!-- Bloques Inferiores -->
-        <div class="info-grid">
-            <div class="info-box tips">
-                <h3>💡 Consejos de la Combi</h3>
-                <ul>
-                    <li>Pide tu combo con extra tocino para una experiencia única.</li>
-                    <li>Pregunta por las salsas de temporada disponibles hoy.</li>
-                </ul>
-            </div>
-            <div class="info-box result">
-                <h3>⭐ Calidad Garantizada</h3>
-                <ul>
-                    <li>Ingredientes 100% frescos del día.</li>
-                    <li>Preparación rápida en menos de 10 minutos.</li>
-                    <li>El auténtico sabor callejero con higiene total.</li>
-                </ul>
-            </div>
-            <div class="info-box details">
-                <h3>🕒 Información Útil</h3>
-                <ul>
-                    <li><strong>Horario:</strong> Lunes a Domingo de 6:00 PM a 12:00 AM.</li>
-                    <li><strong>Ubicación:</strong> Esquina principal del parque central.</li>
-                    <li><strong>Servicio:</strong> Para llevar o comer en el área de la combi.</li>
-                </ul>
-            </div>
         </div>
 
     </div>
 
+    <!-- Carrito Flotante que va a WhatsApp -->
+    <div class="cart-floating">
+        <span id="cart-count">🛒 Carrito: 0 productos</span>
+        <span id="cart-total">Total: $0.00</span>
+        <button class="cart-btn" onclick="enviarPedidoWhatsApp()">📲 Enviar a WhatsApp</button>
+    </div>
+
     <!-- Pie de página -->
     <footer>
-        <p>&copy; 2026 Combos Sobre Ruedas. Diseñado para GitHub Pages con estilo dinámico.</p>
+        <p>&copy; 2026 Combos Sobre Ruedas. Pedidos en línea sincronizados con WhatsApp.</p>
     </footer>
+
+    <!-- Script de lógica del Carrito y WhatsApp -->
+    <script>
+        let carrito = [];
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            let total = 0;
+            carrito.forEach(item => {
+                total += item.precio;
+            });
+            document.getElementById('cart-count').innerText = `🛒 Carrito: ${carrito.length} productos`;
+            document.getElementById('cart-total').innerText = `Total: $${total.toFixed(2)}`;
+        }
+
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío. Selecciona al menos un producto.");
+                return;
+            }
+
+            let mensaje = "¡Hola! Quisiera hacer el siguiente pedido:\n\n";
+            let total = 0;
+
+            carrito.forEach((item, index) => {
+                mensaje += `${index + 1}. ${item.nombre} - $${item.precio.toFixed(2)}\n`;
+                total += item.precio;
+            });
+
+            mensaje += `\n*Total a pagar: $${total.toFixed(2)}*\n\n¡Quedo a la espera de la confirmación!`;
+
+            // CAMBIA AQUÍ TU NÚMERO DE WHATSAPP (ejemplo: 5351234567)
+            let numeroWhatsApp = "5359126741"; 
+
+            let url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
 
 </body>
 </html>
