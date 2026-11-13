@@ -6,6 +6,78 @@
     <title>Combos Sobre Ruedas - Menú Interactivo</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Espacio extra abajo para que el carrito flotante no tape el último producto */
+        body {
+            padding-bottom: 130px;
+        }
+
+        /* Estilos del Carrusel Automático de Fotos */
+        .carousel-container {
+            max-width: 1000px;
+            margin: 1.5rem auto 0 auto;
+            padding: 0 1.2rem;
+        }
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(26, 26, 46, 0.25);
+            border: 4px solid #ffd100;
+            background: #1a1a2e;
+        }
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(26, 26, 46, 0.92));
+            color: #ffffff;
+            padding: 1.8rem 1rem 0.9rem 1rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        .carousel-dots {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s;
+        }
+        .dot.active {
+            background: #ffd100;
+            transform: scale(1.2);
+        }
+
+        /* Estilos del Menú Desplegable */
         .card {
             cursor: pointer;
         }
@@ -80,25 +152,26 @@
         /* Carrito Flotante */
         .cart-floating {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             background: #1a1a2e;
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             border: 2px solid #ffd100;
+            font-size: 0.9rem;
         }
         .cart-btn {
             background: #25d366;
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.45rem 1rem;
             border-radius: 20px;
             font-weight: bold;
             cursor: pointer;
@@ -106,20 +179,67 @@
             display: flex;
             align-items: center;
             gap: 5px;
-            margin-top: 5px;
+            margin-top: 4px;
         }
         .cart-btn:hover {
             background: #1ebe5d;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-wrapper {
+                height: 360px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Cabecera -->
     <header>
         <div class="header-badge">🍔 ¡Toca una categoría para ver el menú! 🚐</div>
         <h1>Combos de Comida Callejera</h1>
         <p>Explora nuestras opciones, arma tu pedido y envíalo directo al WhatsApp.</p>
     </header>
+
+    <!-- Carrusel Automático de Productos y Clientes Disfrutando -->
+    <div class="carousel-container">
+        <div class="carousel-wrapper" id="foodCarousel">
+            <!-- Foto 1: Hamburguesa Artesanal -->
+            <div class="carousel-slide active">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Hamburguesa Artesanal Jugosa">
+                <div class="carousel-caption">🍔 Hamburguesas 100% Artesanales recién salidas de la plancha</div>
+            </div>
+            <!-- Foto 2: Personas disfrutando comida -->
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Amigos disfrutando comida">
+                <div class="carousel-caption">😋 ¡El mejor sabor para compartir con amigos y familia!</div>
+            </div>
+            <!-- Foto 3: Papas Fritas con Cheddar -->
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80" alt="Papas Fritas con Cheddar y Tocino">
+                <div class="carousel-caption">🍟 Papas crujientes bañadas en queso cheddar y tocino</div>
+            </div>
+            <!-- Foto 4: Persona comiendo hamburguesa -->
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=80" alt="Disfrutando un buen combo">
+                <div class="carousel-caption">🔥 Combos irresistibles que te hacen volver por más</div>
+            </div>
+            <!-- Foto 5: Bebidas refrescantes -->
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80" alt="Limonada Natural Helada">
+                <div class="carousel-caption">🍋 Limonadas naturales y bebidas bien frías</div>
+            </div>
+
+            <!-- Indicadores de puntos -->
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
 
@@ -237,21 +357,43 @@
 
     </div>
 
+    <!-- Carrito Flotante -->
     <div class="cart-floating">
         <span id="cart-count">🛒 Carrito: 0 productos</span>
         <span id="cart-total">Total: $0.00</span>
         <button class="cart-btn" onclick="enviarPedidoWhatsApp()">📲 Enviar a WhatsApp</button>
     </div>
 
+    <!-- Pie de página -->
     <footer>
         <p>&copy; 2026 Combos Sobre Ruedas. Menú interactivo con conexión a WhatsApp.</p>
     </footer>
 
+    <!-- Scripts de Carrusel, Menú y Carrito -->
     <script>
+        // Lógica del Carrusel Automático (cambia cada 3.5 segundos)
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 3500);
+
+        // Lógica del Menú Desplegable
         function toggleMenu(cardElement) {
             cardElement.classList.toggle('active');
         }
 
+        // Lógica del Carrito y WhatsApp
         let carrito = [];
 
         function agregarAlCarrito(nombre, precio) {
